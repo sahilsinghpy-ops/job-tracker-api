@@ -26,17 +26,17 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 
-from hireflow_api.apps.users import views
 
 router = DefaultRouter()
 router.register(r'companies',CompanyViewSet,basename='companies')
 router.register(r'jobs', JobViewSet,basename='jobs')
 urlpatterns = [
-    path('sahil/', views.show_name, name='show-name'),
+
     path('api/me/',UserView.as_view(),name='profile'),
     path('api/register/',RegisterView.as_view(), name='register'),
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
+    path('',include('apps.users.urls')),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
