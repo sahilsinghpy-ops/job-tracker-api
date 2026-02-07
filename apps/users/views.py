@@ -1,3 +1,6 @@
+from django.http import HttpResponse
+from django.template.context_processors import request
+
 from rest_framework.generics import CreateAPIView, RetrieveAPIView
 from .models import User
 from .serializers import registerUserSerializer,UserSerilzation
@@ -16,3 +19,6 @@ class UserView(APIView):
     def get(self,request):
         serilation = UserSerilzation(request.user)
         return Response(serilation.data)
+
+def show_name(request):
+    return HttpResponse("Sahil")
